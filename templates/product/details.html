@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-sm-6 col-sm-push-6">
             <h1 itemprop="name">
-                {{ product }}
+                {{ product }} 
             </h1>
 
             {% if product.is_in_stock %}
@@ -40,6 +40,9 @@
                                 <small class="label label-success">{% trans "You save" %} {% gross discount %}</small>
                             {% else %}
                                 <span class="price">{% price_range price_range %}</span>
+                                <br>
+                                <span class="price">{{ product.protein}}</span>
+                                
                             {% endif %}
                         </p>
                     {% endwith %}

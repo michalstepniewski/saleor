@@ -68,7 +68,8 @@ class ProductVariantForm(forms.ModelForm):
             'placeholder'] = self.instance.product.price.gross
         self.fields['weight_override'].widget.attrs[
             'placeholder'] = self.instance.product.weight
-
+        self.fields['weight_override'].widget.attrs[
+            'placeholder'] = self.instance.product.protein
 
 class CachingModelChoiceIterator(ModelChoiceIterator):
     def __iter__(self):

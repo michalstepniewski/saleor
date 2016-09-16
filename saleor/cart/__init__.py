@@ -45,6 +45,7 @@ class Cart(cart.Cart):
         return pgettext(
             'Shopping cart',
             'Your cart (%(cart_count)s)') % {'cart_count': self.count()}
+            
 
     @classmethod
     def for_session_cart(cls, session_cart, discounts=None):
@@ -68,6 +69,41 @@ class Cart(cart.Cart):
             cart.add(variant, quantity=quantity, check_quantity=False,
                      skip_session_cart=True)
         return cart
+
+    def complement_nutrients (self):
+        from ..product.models import Product
+        recommended_protein = 9.0
+        total_protein = self.get_total_protein()
+        
+        protein_lack = recommended_protein - total_protein
+        
+        for product in Product.objects.all():
+            
+            print product.pk
+            
+            print 
+
+            if (0.0 <= protein_lack - float(product.protein) <= 2.0):
+                
+                print 'sthg'
+        
+                print product.pk
+        
+                return product
+    
+    def get_total_protein (self):
+        from django.db.models import F, FloatField, Sum
+#        products.aggregate(Sum('protein'))
+        print self.session_cart
+#        print self.
+        sumI = 0.0 
+        for line in self:
+#            print line.quantity
+#            print line.product.product.protein * line.quantity
+            sumI+= float(line.product.product.protein * line.quantity)
+            
+        return sumI
+#        return self.session_cart.products.aggregate(Sum('protein'))
 
     def get_data_for_product(self, variant):
         variant_price = variant.get_price_per_item(discounts=self.discounts)

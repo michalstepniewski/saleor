@@ -86,6 +86,9 @@ class Product(models.Model, ItemRange):
     weight = WeightField(
         pgettext_lazy('Product field', 'weight'), unit=settings.DEFAULT_WEIGHT,
         max_digits=6, decimal_places=2)
+    protein = WeightField(
+        pgettext_lazy('Product field', 'weight'), unit=settings.DEFAULT_WEIGHT,
+        max_digits=6, decimal_places=2)
     available_on = models.DateField(
         pgettext_lazy('Product field', 'available on'), blank=True, null=True)
     attributes = models.ManyToManyField(
